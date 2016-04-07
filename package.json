@@ -30,5 +30,5 @@
     "lint": "eslint index.js",
     "prepush": "npm run lint && npm test"
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
