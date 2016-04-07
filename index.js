@@ -41,9 +41,14 @@ module.exports = function(url) {
     const got = require('got');
 
     const promise = new Promise(resolve => {
+      let resolved;
+
       const stream = got.stream(url).pipe(
         through2(function(chunk, enc, callback) {
-          resolve({ ext: imageType(chunk).ext, stream });
+          if (!resolved) {
+            resolve({ ext: imageType(chunk).ext, stream });
+            resolved = true;
+          }
 
           this.push(chunk);
           callback();
